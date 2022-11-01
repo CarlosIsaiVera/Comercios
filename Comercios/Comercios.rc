@@ -1,0 +1,766 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Español (México) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESM)
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MEXICAN
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ID_WINInSes DIALOGEX 0, 0, 157, 131
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Inicio de sesión"
+MENU IDR_MENU1
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Continuar",ID_ContSes,20,74,50,14
+    EDITTEXT        ID_EDUser,12,16,67,14,ES_AUTOHSCROLL
+    CTEXT           "Usuario",IDC_STATIC,32,4,26,8
+    CTEXT           "Contraseña",IDC_STATIC,27,38,38,8
+    CTEXT           "No estas registrado?",IDC_STATIC,11,97,68,8
+    PUSHBUTTON      "Registrar",ID_Registrar,19,109,50,14
+    EDITTEXT        ID_EDPassword,12,50,67,14,ES_PASSWORD | ES_AUTOHSCROLL
+    PUSHBUTTON      "Salir",ID_Salir,91,109,50,14,NOT WS_TABSTOP
+    LISTBOX         ID_ListComercios,88,16,56,82,LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "Comercios",IDC_STATIC,98,4,35,8,SS_CENTERIMAGE
+END
+
+ID_RegAdWnd DIALOGEX 0, 0, 176, 101
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Registrar Administrador"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "Comercio",IDC_STATIC,32,44,32,8
+    PUSHBUTTON      "Registrar",ID_RegAdmin,102,78,50,14
+    CTEXT           "Usuario",IDC_STATIC,35,8,26,8
+    CTEXT           "Contraseña",IDC_STATIC,109,8,38,8
+    CTEXT           "Confirmar contraseña",IDC_STATIC,91,43,72,8
+    EDITTEXT        ID_EDPassword,94,20,67,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_EDPassword2,94,56,67,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_EDCom,15,56,67,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_EDUser,15,20,67,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Regresar",ID_Regresar,23,78,50,14
+END
+
+ID_MainWnd DIALOGEX 0, 0, 161, 173
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_VISIBLE | WS_CAPTION
+CAPTION "Dialog"
+FONT 8, "Microsoft Sans Serif", 400, 0, 0x0
+BEGIN
+    GROUPBOX        "Num. Clientes",IDC_STATIC,9,113,63,30
+    GROUPBOX        "Num. Promociones",IDC_STATIC,81,1,75,69
+    GROUPBOX        "Consumos",IDC_STATIC,81,74,75,69,WS_GROUP
+    EDITTEXT        ID_NumCli,17,125,47,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER | WS_DISABLED
+    CTEXT           "Activas",IDC_STATIC,105,13,26,8
+    CTEXT           "Inactivas",IDC_STATIC,102,41,32,8
+    CTEXT           "Totales",IDC_STATIC,105,86,26,8
+    CTEXT           "Monto total",IDC_STATIC,97,114,42,8
+    EDITTEXT        ID_NumActProm,95,24,47,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER | WS_DISABLED
+    EDITTEXT        ID_NumNoActProm,95,52,47,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER | WS_DISABLED
+    EDITTEXT        ID_NumTotCon,95,97,47,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER | WS_DISABLED
+    EDITTEXT        ID_NumMonCon,95,125,47,14,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    CTEXT           "Bienvenido",IDC_STATIC,21,68,39,8,SS_CENTERIMAGE
+    PUSHBUTTON      "Actualizar\n mi usuario",ID_UpUs,18,88,44,20,BS_CENTER | BS_VCENTER | BS_MULTILINE
+    CTEXT           "",ID_UsName,2,77,77,8,0,WS_EX_TRANSPARENT
+END
+
+ID_InfoUs DIALOGEX 0, 0, 157, 107
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Información de Usuario"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        ID_EDUsNombre,8,19,64,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Cargar Imagen",ID_LoadPFP,87,70,55,14
+    PUSHBUTTON      "Guardar",ID_Guardar,52,88,50,14
+    CTEXT           "Alias",IDC_STATIC,32,37,16,8
+    RTEXT           "Nombre",IDC_STATIC,27,7,27,8
+    EDITTEXT        ID_EDUsAlias,8,49,64,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Regresar",ID_Regresar,15,70,50,14
+END
+
+ID_RegUsWnd DIALOGEX 0, 0, 176, 119
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Registrar Usuario"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "Comercio",IDC_STATIC,32,44,32,8
+    PUSHBUTTON      "Registrar",ID_RegUser,102,94,50,14
+    CTEXT           "Usuario",IDC_STATIC,35,8,26,8
+    CTEXT           "Contraseña",IDC_STATIC,109,8,38,8
+    CTEXT           "Confirmar contraseña",IDC_STATIC,91,43,72,8
+    EDITTEXT        ID_EDPassword,94,20,67,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_EDPassword2,94,56,67,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_EDCom,15,56,67,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        ID_EDUser,15,20,67,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Regresar",ID_Regresar,23,94,50,14
+    CONTROL         "Administrador",ID_AdCheck,"Button",BS_AUTOCHECKBOX | BS_CENTER | WS_TABSTOP,59,78,57,10
+END
+
+ID_ListUsersWnd DIALOGEX 0, 0, 285, 151
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Listado de Usuarios"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         ID_ListaUsuarios,15,14,88,102,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Eliminar",ID_Eliminar,14,124,50,14
+    PUSHBUTTON      "Actualizar",ID_ActUs,117,124,50,14
+    PUSHBUTTON      "Regresar",ID_Regresar,221,124,50,14
+    LISTBOX         ID_ListaInfoUs,111,14,159,102,NOT LBS_NOTIFY | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | NOT WS_BORDER | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    CTEXT           "Usuarios",IDC_STATIC,44,6,29,8
+    LTEXT           "Información del usuario",IDC_STATIC,150,6,78,8
+END
+
+ID_RestPassWnd DIALOGEX 0, 0, 183, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Restablecer Contraseña"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         ID_ListUs,16,15,82,60,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Restablecer Contraseña",ID_NewPass,14,86,85,14
+    PUSHBUTTON      "Regresar",ID_Regresar,112,86,50,14
+    EDITTEXT        ID_EDPassRest,105,27,65,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_EDConfRest,105,58,65,14,ES_AUTOHSCROLL
+    LTEXT           "Contraseña",IDC_STATIC,118,15,38,8
+    LTEXT           "Confirmar Contraseña",IDC_STATIC,101,46,73,8
+END
+
+ID_RegCliWnd DIALOGEX 0, 0, 176, 231
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Registrar Cliente"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "Comercio",IDC_STATIC,72,75,32,8
+    PUSHBUTTON      "Guardar",ID_Guardar,102,202,50,14
+    CTEXT           "Nombre",IDC_STATIC,35,8,27,8
+    CTEXT           "Alias",IDC_STATIC,119,8,16,8
+    CTEXT           "E-Mail",IDC_STATIC,117,43,21,8
+    EDITTEXT        ID_EDCliAlias,94,20,67,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_EDCliMail,94,56,67,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_EDCom,55,87,67,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        ID_EDCliNombre,15,20,67,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Regresar",ID_Regresar,23,202,50,14
+    CONTROL         "",ID_FechaCli,"SysMonthCal32",MCS_NOTODAY | MCS_NOTODAYCIRCLE | MCS_NOTRAILINGDATES | MCS_SHORTDAYSOFWEEK | MCS_NOSELCHANGEONNAV | WS_TABSTOP,25,106,127,89,WS_EX_DLGMODALFRAME
+    CTEXT           "Teléfono",IDC_STATIC,33,43,30,8
+    EDITTEXT        ID_EDCliTelef,15,56,67,14,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+ID_ListClientsWnd DIALOGEX 0, 0, 417, 148
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Listado de Clientes"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         ID_ListaClientes,15,14,88,102,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Eliminar",ID_Eliminar,25,124,50,14
+    PUSHBUTTON      "Actualizar",ID_ActCli,183,124,50,14
+    PUSHBUTTON      "Regresar",ID_Regresar,336,124,50,14
+    LISTBOX         ID_ListaInfoCli,111,14,159,102,NOT LBS_NOTIFY | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | NOT WS_BORDER | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Clientes",IDC_STATIC,45,6,27,8
+    LTEXT           "Información del cliente",IDC_STATIC,153,6,75,8
+    CONTROL         "",ID_FechaRegCli,"SysMonthCal32",MCS_NOTODAY | MCS_NOTODAYCIRCLE | MCS_SHORTDAYSOFWEEK | WS_DISABLED | WS_TABSTOP,276,17,128,96,WS_EX_STATICEDGE
+    LTEXT           "Fecha de registro",IDC_STATIC,311,8,58,8
+END
+
+ID_ActCliWnd DIALOGEX 0, 0, 176, 231
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Actualizar Cliente"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "Comercio",IDC_STATIC,72,75,32,8
+    PUSHBUTTON      "Guardar",ID_Guardar,102,202,50,14
+    CTEXT           "Nombre",IDC_STATIC,35,8,27,8
+    CTEXT           "Alias",IDC_STATIC,119,8,16,8
+    CTEXT           "E-Mail",IDC_STATIC,117,43,21,8
+    EDITTEXT        ID_EDCliAlias,94,20,67,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_EDCliMail,94,56,67,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_EDCom,55,87,67,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        ID_EDCliNombre,15,20,67,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Regresar",ID_Regresar,23,202,50,14
+    CONTROL         "",ID_FechaCli,"SysMonthCal32",MCS_NOTODAY | MCS_NOTODAYCIRCLE | MCS_NOTRAILINGDATES | MCS_SHORTDAYSOFWEEK | MCS_NOSELCHANGEONNAV | WS_DISABLED | WS_TABSTOP,25,106,127,89,WS_EX_DLGMODALFRAME
+    CTEXT           "Teléfono",IDC_STATIC,33,43,30,8
+    EDITTEXT        ID_EDCliTelef,15,56,67,14,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+ID_RegProWnd DIALOGEX 0, 0, 176, 213
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Registrar Promoción"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "Comercio",IDC_STATIC,111,43,32,8
+    PUSHBUTTON      "Guardar",ID_Guardar,102,187,50,14
+    CTEXT           "Nombre",IDC_STATIC,35,8,27,8
+    CTEXT           "Monto",IDC_STATIC,117,8,21,8
+    EDITTEXT        ID_EDProMonto,94,20,67,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        ID_EDCom,94,56,67,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        ID_EDProNombre,15,20,67,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Regresar",ID_Regresar,23,187,50,14
+    CONTROL         "",ID_FechaPro,"SysMonthCal32",MCS_NOTODAY | MCS_NOTODAYCIRCLE | MCS_NOTRAILINGDATES | MCS_SHORTDAYSOFWEEK | MCS_NOSELCHANGEONNAV | WS_TABSTOP,25,91,127,89,WS_EX_DLGMODALFRAME
+    CTEXT           "Porcentaje",IDC_STATIC,30,43,36,8
+    EDITTEXT        ID_EDProPrj,25,56,47,14,ES_CENTER | ES_AUTOHSCROLL
+    CONTROL         "Activa",ID_ActivePro,"Button",BS_AUTOCHECKBOX | BS_CENTER | WS_TABSTOP,70,77,35,10
+    LTEXT           "%",IDC_STATIC,73,59,8,8
+END
+
+ID_ListPromotionsWnd DIALOGEX 0, 0, 417, 148
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Listado de Promociones"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         ID_ListaPromociones,15,14,88,102,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Eliminar",ID_Eliminar,25,124,50,14
+    PUSHBUTTON      "Actualizar",ID_ActPro,183,124,50,14
+    PUSHBUTTON      "Regresar",ID_Regresar,336,124,50,14
+    LISTBOX         ID_ListaInfoPro,111,14,159,102,NOT LBS_NOTIFY | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | NOT WS_BORDER | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Promociones",IDC_STATIC,37,6,43,8
+    LTEXT           "Información de la promoción",IDC_STATIC,147,6,95,8
+    CONTROL         "",ID_FechaRegPro,"SysMonthCal32",MCS_NOTODAY | MCS_NOTODAYCIRCLE | MCS_SHORTDAYSOFWEEK | WS_DISABLED | WS_TABSTOP,276,17,128,96,WS_EX_STATICEDGE
+    LTEXT           "Fecha de registro",IDC_STATIC,311,8,58,8
+END
+
+ID_ActProWnd DIALOGEX 0, 0, 176, 213
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Actualizar Promoción"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "Comercio",IDC_STATIC,111,43,32,8
+    PUSHBUTTON      "Guardar",ID_Guardar,102,187,50,14
+    CTEXT           "Nombre",IDC_STATIC,35,8,27,8
+    CTEXT           "Monto",IDC_STATIC,117,8,21,8
+    EDITTEXT        ID_EDProMonto,94,20,67,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        ID_EDCom,94,56,67,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        ID_EDProNombre,15,20,67,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Regresar",ID_Regresar,23,187,50,14
+    CONTROL         "",ID_FechaPro,"SysMonthCal32",MCS_NOTODAY | MCS_NOTODAYCIRCLE | MCS_NOTRAILINGDATES | MCS_SHORTDAYSOFWEEK | MCS_NOSELCHANGEONNAV | WS_DISABLED | WS_TABSTOP,25,74,127,89,WS_EX_DLGMODALFRAME
+    CTEXT           "Porcentaje (Numero)",IDC_STATIC,13,43,70,8
+    EDITTEXT        ID_EDProPrj,15,56,67,14,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Activa",ID_ActivePro,"Button",BS_AUTOCHECKBOX | BS_CENTER | WS_TABSTOP,72,172,35,10
+    GROUPBOX        "Solo lectura",IDC_STATIC,7,1,161,168
+END
+
+ID_RegConWnd DIALOGEX 0, 0, 473, 120
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Registrar Consumo"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "Comercio",IDC_STATIC,225,57,32,8
+    PUSHBUTTON      "Guardar",ID_Guardar,258,94,50,14
+    CTEXT           "Monto",IDC_STATIC,37,17,21,8
+    CTEXT           "Total",IDC_STATIC,275,17,18,8
+    CTEXT           "Descuento",IDC_STATIC,107,17,35,8
+    EDITTEXT        ID_EDConTotal,252,30,67,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        ID_EDConDesc,96,30,55,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        ID_EDCom,208,69,67,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        ID_EDConMonto,15,30,67,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Regresar",ID_Regresar,23,94,50,14
+    CONTROL         "",ID_FechaCon,"SysMonthCal32",MCS_NOTODAY | MCS_NOTODAYCIRCLE | MCS_NOTRAILINGDATES | MCS_SHORTDAYSOFWEEK | MCS_NOSELCHANGEONNAV | WS_TABSTOP,327,7,139,105,WS_EX_DLGMODALFRAME
+    CTEXT           "Subtotal",IDC_STATIC,192,17,28,8
+    EDITTEXT        ID_EDConSub,173,30,67,14,ES_AUTOHSCROLL | ES_READONLY
+    CTEXT           "Cliente",IDC_STATIC,100,52,23,8
+    LISTBOX         ID_ListaConCli,42,62,139,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LTEXT           "%",IDC_STATIC,153,33,8,8
+END
+
+ID_ListTicketsWnd DIALOGEX 0, 0, 417, 148
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Listado de Consumos"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         ID_ListaConsumos,15,14,88,102,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Regresar",ID_Regresar,183,124,50,14
+    LISTBOX         ID_ListaInfoCon,111,14,159,102,NOT LBS_NOTIFY | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | NOT WS_BORDER | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Consumos",IDC_STATIC,40,6,35,8
+    LTEXT           "Información del consumo",IDC_STATIC,151,5,83,8
+    CONTROL         "",ID_FechaRegCon,"SysMonthCal32",MCS_NOTODAY | MCS_NOTODAYCIRCLE | MCS_SHORTDAYSOFWEEK | WS_DISABLED | WS_TABSTOP,276,17,128,96,WS_EX_STATICEDGE
+    LTEXT           "Fecha de registro",IDC_STATIC,311,8,58,8
+END
+
+ID_DeleteUserWnd DIALOGEX 0, 0, 189, 152
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Eliminar Usuario"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Eliminar",ID_Eliminar,17,124,50,14
+    PUSHBUTTON      "Regresar",ID_Regresar,121,124,50,14
+    LISTBOX         ID_ListaBorrarUs,15,14,159,102,NOT LBS_NOTIFY | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | NOT WS_BORDER | WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Información del usuario",-1,55,6,78,8
+END
+
+ID_DeletePromotionWnd DIALOGEX 0, 0, 315, 149
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Eliminar Promoción"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Eliminar",ID_Eliminar,25,124,50,14
+    PUSHBUTTON      "Regresar",ID_Regresar,243,124,50,14
+    LISTBOX         ID_ListaBorrarPro,12,14,159,102,NOT LBS_NOTIFY | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | NOT WS_BORDER | WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Información de la promoción",-1,48,6,95,8
+    CONTROL         "",ID_FechaDelPro,"SysMonthCal32",MCS_NOTODAY | MCS_NOTODAYCIRCLE | MCS_SHORTDAYSOFWEEK | WS_DISABLED | WS_TABSTOP,177,17,128,96,WS_EX_STATICEDGE
+    LTEXT           "Fecha de registro",-1,212,8,58,8
+END
+
+ID_DeleteClientWnd DIALOGEX 0, 0, 315, 149
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Eliminar Clientes"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Eliminar",ID_Eliminar,25,124,50,14
+    PUSHBUTTON      "Regresar",ID_Regresar,243,124,50,14
+    LISTBOX         ID_ListaBorrarCli,12,14,159,102,NOT LBS_NOTIFY | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | NOT WS_BORDER | WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Información del cliente",-1,53,6,75,8
+    CONTROL         "",ID_FechaDelCli,"SysMonthCal32",MCS_NOTODAY | MCS_NOTODAYCIRCLE | MCS_SHORTDAYSOFWEEK | WS_DISABLED | WS_TABSTOP,177,17,128,96,WS_EX_STATICEDGE
+    LTEXT           "Fecha de registro",-1,212,8,58,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    ID_WINInSes, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 150
+        VERTGUIDE, 44
+        VERTGUIDE, 79
+        VERTGUIDE, 116
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 124
+    END
+
+    ID_RegAdWnd, DIALOG
+    BEGIN
+        MOCKUP, 0, 64, 53, 3, "..\..\..\..\Downloads\IMG_7215.jpg"
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 169
+        VERTGUIDE, 48
+        VERTGUIDE, 127
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 94
+    END
+
+    ID_MainWnd, DIALOG
+    BEGIN
+        MOCKUP, 1, 50, 30, 33, ".\DefaultPfp.bmp"
+        VERTGUIDE, 14
+        VERTGUIDE, 40
+        VERTGUIDE, 118
+        BOTTOMMARGIN, 172
+        HORZGUIDE, 16
+    END
+
+    ID_InfoUs, DIALOG
+    BEGIN
+        MOCKUP, 1, 50, 150, 23, ".\DefaultPfp.bmp"
+        RIGHTMARGIN, 152
+        VERTGUIDE, 40
+        VERTGUIDE, 85
+        VERTGUIDE, 114
+        VERTGUIDE, 142
+        BOTTOMMARGIN, 87
+        HORZGUIDE, 2
+    END
+
+    ID_RegUsWnd, DIALOG
+    BEGIN
+        MOCKUP, 0, 64, 53, 3, "..\..\..\..\Downloads\IMG_7215.jpg"
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 169
+        VERTGUIDE, 48
+        VERTGUIDE, 127
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    ID_ListUsersWnd, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 278
+        VERTGUIDE, 142
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 144
+        HORZGUIDE, 131
+    END
+
+    ID_RestPassWnd, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 176
+        VERTGUIDE, 137
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 107
+        HORZGUIDE, 93
+    END
+
+    ID_RegCliWnd, DIALOG
+    BEGIN
+        MOCKUP, 0, 64, 53, 3, "..\..\..\..\Downloads\IMG_7215.jpg"
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 169
+        VERTGUIDE, 48
+        VERTGUIDE, 127
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 224
+        HORZGUIDE, 181
+    END
+
+    ID_ListClientsWnd, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 410
+        VERTGUIDE, 208
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 141
+        HORZGUIDE, 131
+    END
+
+    ID_ActCliWnd, DIALOG
+    BEGIN
+        MOCKUP, 0, 64, 53, 3, "..\..\..\..\Downloads\IMG_7215.jpg"
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 168
+        VERTGUIDE, 48
+        VERTGUIDE, 127
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 224
+        HORZGUIDE, 181
+    END
+
+    ID_RegProWnd, DIALOG
+    BEGIN
+        MOCKUP, 0, 64, 53, 3, "..\..\..\..\Downloads\IMG_7215.jpg"
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 168
+        VERTGUIDE, 48
+        VERTGUIDE, 127
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 206
+        HORZGUIDE, 194
+    END
+
+    ID_ListPromotionsWnd, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 410
+        VERTGUIDE, 208
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 141
+        HORZGUIDE, 131
+    END
+
+    ID_ActProWnd, DIALOG
+    BEGIN
+        MOCKUP, 0, 64, 53, 3, "..\..\..\..\Downloads\IMG_7215.jpg"
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 168
+        VERTGUIDE, 48
+        VERTGUIDE, 127
+        BOTTOMMARGIN, 206
+        HORZGUIDE, 194
+    END
+
+    ID_RegConWnd, DIALOG
+    BEGIN
+        MOCKUP, 0, 64, 53, 3, "..\..\..\..\Downloads\IMG_7215.jpg"
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 466
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 113
+        HORZGUIDE, 37
+        HORZGUIDE, 76
+        HORZGUIDE, 101
+    END
+
+    ID_ListTicketsWnd, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 410
+        VERTGUIDE, 208
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 141
+        HORZGUIDE, 131
+    END
+
+    ID_DeleteUserWnd, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 182
+        VERTGUIDE, 94
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 145
+        HORZGUIDE, 131
+    END
+
+    ID_DeletePromotionWnd, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 308
+        VERTGUIDE, 208
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 142
+        HORZGUIDE, 131
+    END
+
+    ID_DeleteClientWnd, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 308
+        VERTGUIDE, 208
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 142
+        HORZGUIDE, 131
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_DIALOG1 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_WINInSes AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_RegAdWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_MainWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_InfoUs AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_RegUsWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_ListUsersWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_RestPassWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_RegCliWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_ListClientsWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_ActCliWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_RegProWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_ListPromotionsWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_ActProWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_RegConWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_ListTicketsWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_DeleteUserWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_DeletePromotionWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+ID_DeleteClientWnd AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU
+BEGIN
+    POPUP "Archivo"
+    BEGIN
+        MENUITEM "Abrir Archivo",               ID_ARCHIVO_ABRIRARCHIVO
+        MENUITEM "Guardar como...",             ID_ARCHIVO_GUARDARCOMO40031
+    END
+END
+
+IDR_MENU2 MENU
+BEGIN
+    POPUP "Guardar"
+    BEGIN
+        MENUITEM "Guardar como...",             ID_GUARDAR_GUARDARCOMO
+    END
+    POPUP "Usuarios"
+    BEGIN
+        MENUITEM "Nuevo Usuario",               ID_USUARIOS_NUEVOUSUARIO
+        MENUITEM "Listar Usuarios",             ID_USUARIOS_LISTARUSUARIOS
+        MENUITEM "Restablecer Contraseña",      ID_USUARIOS_RESTABLECERCONTRASE40015
+    END
+    POPUP "Clientes"
+    BEGIN
+        MENUITEM "Nuevo Cliente",               ID_CLIENTES_NUEVOCLIENTE
+        MENUITEM "Listar Clientes",             ID_CLIENTES_LISTARCLIENTES
+    END
+    POPUP "Promociones"
+    BEGIN
+        MENUITEM "Nueva Promocion",             ID_PROMOCIONES_NUEVAPROMOCION
+        MENUITEM "Listar Promociones",          ID_PROMOCIONES_LISTARPROMOCIONES
+    END
+    POPUP "Consumos"
+    BEGIN
+        MENUITEM "Nuevo Consumo",               ID_CONSUMOS_NUEVOCONSUMO
+        MENUITEM "Listar Consumos",             ID_CONSUMOS_LISTARCONSUMOS
+    END
+    POPUP "Cerrar"
+    BEGIN
+        MENUITEM "Cerrar sin guardar",          ID_CERRAR_CERRARSINGUARDAR
+        MENUITEM "Cerrar y guardar",            ID_CERRAR_CERRARYGUARDAR
+        MENUITEM "Cerrar sesión",               ID_CERRAR_CERRARSESI40025
+    END
+END
+
+IDR_MENU3 MENU
+BEGIN
+    POPUP "Guardar"
+    BEGIN
+        MENUITEM "Guardar como...",             ID_GUARDAR_GUARDARCOMO
+    END
+    POPUP "Usuarios"
+    BEGIN
+        MENUITEM "Listar Usuarios",             ID_USUARIOS_LISTARUSUARIOS
+    END
+    POPUP "Clientes"
+    BEGIN
+        MENUITEM "Nuevo Cliente",               ID_CLIENTES_NUEVOCLIENTE
+        MENUITEM "Listar Clientes",             ID_CLIENTES_LISTARCLIENTES
+    END
+    POPUP "Promociones"
+    BEGIN
+        MENUITEM "Nueva Promocion",             ID_PROMOCIONES_NUEVAPROMOCION
+        MENUITEM "Listar Promociones",          ID_PROMOCIONES_LISTARPROMOCIONES
+    END
+    POPUP "Consumos"
+    BEGIN
+        MENUITEM "Nuevo Consumo",               ID_CONSUMOS_NUEVOCONSUMO
+        MENUITEM "Listar Consumos",             ID_CONSUMOS_LISTARCONSUMOS
+    END
+    POPUP "Cerrar"
+    BEGIN
+        MENUITEM "Cerrar sin guardar",          ID_CERRAR_CERRARSINGUARDAR
+        MENUITEM "Cerrar y guardar",            ID_CERRAR_CERRARYGUARDAR
+        MENUITEM "Cerrar sesión",               ID_CERRAR_CERRARSESI40025
+    END
+END
+
+#endif    // Español (México) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
