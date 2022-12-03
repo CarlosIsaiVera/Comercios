@@ -72,6 +72,15 @@ struct CONSUMO {
 CONSUMO* CONog = nullptr;
 CONSUMO* CONaux = nullptr;
 
+//Cuenta cuantos usuarios, clientes, promociones y consumos hay en total 
+//(Para guardar y cargar)
+struct CANTIDADES {
+    int numUs = 0;
+    int numCli = 0;
+    int numPro = 0;
+    int numCon = 0;
+};
+
 int xImg = 0; //Valor x de la posicion de la imagen
 int yImg = 0; //Valor y de la posicion de la imagen
 int IndiceUniversal = 0; //Variable para guardar el indice de un listbox
@@ -164,6 +173,7 @@ void UploadImg(HWND Father);
 //Funciones de borrado completo
 void DeleteEverything();
 void DeleteCom(const wchar_t Comercio[16]);
+void DeleteCDC(CLIENTE* info);
 
 //Funciones extra
 bool RegistrarUs(bool CheckCom);
@@ -1226,7 +1236,7 @@ BOOL CALLBACK RegistrarCli(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 BOOL CALLBACK ListarClientes(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg) {
     case WM_INITDIALOG:
-        wchar_t seleccion[16];
+        wchar_t seleccion[51];
         ListaCli = GetDlgItem(hwnd, ID_ListaClientes);
         ListaInfoCli = GetDlgItem(hwnd, ID_ListaInfoCli);
         FechaRegCli = GetDlgItem(hwnd, ID_FechaRegCli);
@@ -2177,38 +2187,40 @@ BOOL CALLBACK BorrarUs(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
             break;
 
         case ID_Eliminar:
-            if (borrarComercio) {
-                DeleteCom(USaux->comercio);
-            }
-            USUARIO* temp = USaux;
-            USaux = USog;
-            //Si solo hay un usuario
-            if (borrarog && USog->sig == nullptr) {
-                USog = nullptr;
-                USaux = nullptr;
-            }
-            //Si es el primero y hay más usuarios
-            else if (borrarog && USog->sig != nullptr) {
-                USog = USog->sig;
-                USaux = nullptr;
-            }
-            else {
-                while (USaux->sig != nullptr) {
-                    if (USaux->sig == temp) {
-                        break;
-                    }
-                    else {
-                        USaux = USaux->sig;
-                    }
+            if (IDOK == MessageBox(NULL, L"¿Estas seguro?", L"Advertencia", MB_ICONWARNING | MB_OKCANCEL)) {
+                if (borrarComercio) {
+                    DeleteCom(USaux->comercio);
                 }
-                USaux->sig = temp->sig;
+                USUARIO* temp = USaux;
+                USaux = USog;
+                //Si solo hay un usuario
+                if (borrarog && USog->sig == nullptr) {
+                    USog = nullptr;
+                    USaux = nullptr;
+                }
+                //Si es el primero y hay más usuarios
+                else if (borrarog && USog->sig != nullptr) {
+                    USog = USog->sig;
+                    USaux = nullptr;
+                }
+                else {
+                    while (USaux->sig != nullptr) {
+                        if (USaux->sig == temp) {
+                            break;
+                        }
+                        else {
+                            USaux = USaux->sig;
+                        }
+                    }
+                    USaux->sig = temp->sig;
+                }
+                delete temp;
+                SendMessage((HWND)ListaUs, (UINT)LB_DELETESTRING, (WPARAM)IndiceUniversal, (LPARAM)0);
+                SendMessage((HWND)ListaInfoUs, (UINT)LB_RESETCONTENT, (WPARAM)IndiceUniversal, (LPARAM)0);
+                EndDialog(hwnd, ID_DeleteUserWnd);
             }
-            delete temp;
-            SendMessage((HWND)ListaUs, (UINT)LB_DELETESTRING, (WPARAM)IndiceUniversal, (LPARAM)0);
-            SendMessage((HWND)ListaInfoUs, (UINT)LB_RESETCONTENT, (WPARAM)IndiceUniversal, (LPARAM)0);
-            EndDialog(hwnd, ID_DeleteUserWnd);
             break;
-        }
+        }    
         break;
     }
     return FALSE;
@@ -2244,34 +2256,39 @@ BOOL CALLBACK BorrarCli(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
             EndDialog(hwnd, ID_DeleteClientWnd);
             break;
         case ID_Eliminar: {
-            CLIENTE* temp = CLIaux;
-            CLIaux = CLIog;
-            //Si solo hay un cliente
-            if (borrarog && CLIog->sig == nullptr) {
-                CLIog = nullptr;
-                CLIaux = nullptr;
-            }
-            //Si es el primero y hay más clientes
-            else if (borrarog && CLIog->sig != nullptr) {
-                CLIog = CLIog->sig;
-                CLIaux = nullptr;
-            }
-            else {
-                while (CLIaux->sig != nullptr) {
-                    if (CLIaux->sig == temp) {
-                        break;
-                    }
-                    else {
-                        CLIaux = CLIaux->sig;
-                    }
+            if (IDOK == MessageBox(NULL, L"¿Estas seguro?", L"Advertencia", MB_ICONWARNING | MB_OKCANCEL)) {
+                CLIENTE* temp = CLIaux;
+                CLIaux = CLIog;
+                //Si solo hay un cliente
+                if (borrarog && CLIog->sig == nullptr) {
+                    CLIog = nullptr;
+                    CLIaux = nullptr;
                 }
-                CLIaux->sig = temp->sig;
+                //Si es el primero y hay más clientes
+                else if (borrarog && CLIog->sig != nullptr) {
+                    CLIog = CLIog->sig;
+                    CLIaux = nullptr;
+                }
+                else {
+                    while (CLIaux->sig != nullptr) {
+                        if (CLIaux->sig == temp) {
+                            break;
+                        }
+                        else {
+                            CLIaux = CLIaux->sig;
+                        }
+                    }
+                    CLIaux->sig = temp->sig;
+                }
+                if (CONog != nullptr) {
+                    DeleteCDC(temp);
+                }
+                delete temp;
+                NumClientes--;
+                SendMessage((HWND)ListaCli, (UINT)LB_DELETESTRING, (WPARAM)IndiceUniversal, (LPARAM)0);
+                SendMessage((HWND)ListaInfoCli, (UINT)LB_RESETCONTENT, (WPARAM)IndiceUniversal, (LPARAM)0);
+                EndDialog(hwnd, ID_DeleteClientWnd);
             }
-            delete temp;
-            NumClientes--;
-            SendMessage((HWND)ListaCli, (UINT)LB_DELETESTRING, (WPARAM)IndiceUniversal, (LPARAM)0);
-            SendMessage((HWND)ListaInfoCli, (UINT)LB_RESETCONTENT, (WPARAM)IndiceUniversal, (LPARAM)0);
-            EndDialog(hwnd, ID_DeleteClientWnd);
         }
             break;
         }
@@ -2314,40 +2331,43 @@ BOOL CALLBACK BorrarPro(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
         case ID_Regresar:
             EndDialog(hwnd, ID_DeletePromotionWnd);
             break;
+
         case ID_Eliminar: {
-            if (PROaux->activa) {
-                NumPromocionesAct--;
-            }
-            else {
-                NumPromocionesInact--;
-            }
-            PROMOCION* temp = PROaux;
-            PROaux = PROog;
-            //Si solo hay un cliente
-            if (borrarog && PROog->sig == nullptr) {
-                PROog = nullptr;
-                PROaux = nullptr;
-            }
-            //Si es el primero y hay más clientes
-            else if (borrarog && PROog->sig != nullptr) {
-                PROog = PROog->sig;
-                PROaux = nullptr;
-            }
-            else {
-                while (PROaux->sig != nullptr) {
-                    if (PROaux->sig == temp) {
-                        break;
-                    }
-                    else {
-                        PROaux = PROaux->sig;
-                    }
+            if (IDOK == MessageBox(NULL, L"¿Estas seguro?", L"Advertencia", MB_ICONWARNING | MB_OKCANCEL)) {
+                if (PROaux->activa) {
+                    NumPromocionesAct--;
                 }
-                PROaux->sig = temp->sig;
+                else {
+                    NumPromocionesInact--;
+                }
+                PROMOCION* temp = PROaux;
+                PROaux = PROog;
+                //Si solo hay un cliente
+                if (borrarog && PROog->sig == nullptr) {
+                    PROog = nullptr;
+                    PROaux = nullptr;
+                }
+                //Si es el primero y hay más clientes
+                else if (borrarog && PROog->sig != nullptr) {
+                    PROog = PROog->sig;
+                    PROaux = nullptr;
+                }
+                else {
+                    while (PROaux->sig != nullptr) {
+                        if (PROaux->sig == temp) {
+                            break;
+                        }
+                        else {
+                            PROaux = PROaux->sig;
+                        }
+                    }
+                    PROaux->sig = temp->sig;
+                }
+                delete temp;
+                SendMessage((HWND)ListaPro, (UINT)LB_DELETESTRING, (WPARAM)IndiceUniversal, (LPARAM)0);
+                SendMessage((HWND)ListaInfoPro, (UINT)LB_RESETCONTENT, (WPARAM)IndiceUniversal, (LPARAM)0);
+                EndDialog(hwnd, ID_DeletePromotionWnd);
             }
-            delete temp;
-            SendMessage((HWND)ListaPro, (UINT)LB_DELETESTRING, (WPARAM)IndiceUniversal, (LPARAM)0);
-            SendMessage((HWND)ListaInfoPro, (UINT)LB_RESETCONTENT, (WPARAM)IndiceUniversal, (LPARAM)0);
-            EndDialog(hwnd, ID_DeletePromotionWnd);
         }
             break;
         }
@@ -2434,15 +2454,48 @@ void WriteFile(LPWSTR Path) {
 
     FILE* NewFile;
     fopen_s(&NewFile, filename, "w");
-    int num = 0;
+
+    CANTIDADES* Save = new CANTIDADES;
+
     if (USog != nullptr) {
         USaux = USog;
         while (USaux->sig != nullptr) {
-            num++;
+            Save->numUs++;
             USaux = USaux->sig;
         }
-        num++;
-        fwrite(&num, sizeof(int), 1, NewFile);
+        Save->numUs++;
+    }
+
+    if (CLIog != nullptr) {
+        CLIaux = CLIog;
+        while (CLIaux->sig != nullptr) {
+            Save->numCli++;
+            CLIaux = CLIaux->sig;
+        }
+        Save->numCli++;
+    }
+
+    if (PROog != nullptr) {
+        PROaux = PROog;
+        while (PROaux->sig != nullptr) {
+            Save->numPro++;
+            PROaux = PROaux->sig;
+        }
+        Save->numPro++;
+    }
+    
+    if (CONog != nullptr) {
+        CONaux = CONog;
+        while (CONaux->sig != nullptr) {
+            Save->numCon++;
+            CONaux = CONaux->sig;
+        }
+        Save->numCon++;
+    }
+
+    fwrite(reinterpret_cast<char*>(Save), sizeof(CANTIDADES), 1, NewFile);
+
+    if (USog != nullptr) {
         USaux = USog;
         while (USaux->sig != nullptr) {
             if (wcslen(USaux->PFPpath) == 0) {
@@ -2468,47 +2521,17 @@ void WriteFile(LPWSTR Path) {
         }
         fwrite(reinterpret_cast<char*>(USaux), sizeof(USUARIO), 1, NewFile);
     }
-    num = 0;
+
     if (CLIog != nullptr) {
         CLIaux = CLIog;
         while (CLIaux->sig != nullptr) {
-            num++;
-            CLIaux = CLIaux->sig;
-        }
-        num++;
-        fwrite(&num, sizeof(int), 1, NewFile);
-        CLIaux = CLIog;
-        while (CLIaux->sig != nullptr) {
             fwrite(reinterpret_cast<char*>(CLIaux),sizeof(CLIENTE), 1, NewFile);
-            //fwrite(CLIaux->nombre, sizeof(CLIaux->nombre), 1, NewFile);
-            //fwrite(CLIaux->alias, sizeof(CLIaux->alias), 1, NewFile);
-            //fwrite(CLIaux->telefono, sizeof(CLIaux->telefono), 1, NewFile);
-            //fwrite(CLIaux->Email, sizeof(CLIaux->Email), 1, NewFile);
-            //fwrite(CLIaux->comercio, sizeof(CLIaux->comercio), 1, NewFile);
-            //fwrite(&CLIaux->dia, sizeof(int), 1, NewFile);
-            //fwrite(&CLIaux->mes, sizeof(int), 1, NewFile);
-            //fwrite(&CLIaux->año, sizeof(int), 1, NewFile);
             CLIaux = CLIaux->sig;
         }
         fwrite(reinterpret_cast<char*>(CLIaux), sizeof(CLIENTE), 1, NewFile);
-        //fwrite(CLIaux->nombre, sizeof(CLIaux->nombre), 1, NewFile);
-        //fwrite(CLIaux->alias, sizeof(CLIaux->alias), 1, NewFile);
-        //fwrite(CLIaux->telefono, sizeof(CLIaux->telefono), 1, NewFile);
-        //fwrite(CLIaux->Email, sizeof(CLIaux->Email), 1, NewFile);
-        //fwrite(CLIaux->comercio, sizeof(CLIaux->comercio), 1, NewFile);
-        //fwrite(&CLIaux->dia, sizeof(int), 1, NewFile);
-        //fwrite(&CLIaux->mes, sizeof(int), 1, NewFile);
-        //fwrite(&CLIaux->año, sizeof(int), 1, NewFile);
     }
-    num = 0;
+
     if (PROog != nullptr) {
-        PROaux = PROog;
-        while (PROaux->sig != nullptr) {
-            num++;
-            PROaux = PROaux->sig;
-        }
-        num++;
-        fwrite(&num, sizeof(int), 1, NewFile);
         PROaux = PROog;
         while (PROaux->sig != nullptr) {
             fwrite(reinterpret_cast<char*>(PROaux), sizeof(PROMOCION), 1, NewFile);
@@ -2516,15 +2539,8 @@ void WriteFile(LPWSTR Path) {
         }
         fwrite(reinterpret_cast<char*>(PROaux), sizeof(PROMOCION), 1, NewFile);
     }
-    num = 0;
+
     if (CONog != nullptr) {
-        CONaux = CONog;
-        while (CONaux->sig != nullptr) {
-            num++;
-            CONaux = CONaux->sig;
-        }
-        num++;
-        fwrite(&num, sizeof(int), 1, NewFile);
         CONaux = CONog;
         while (CONaux->sig != nullptr) {
             fwrite(reinterpret_cast<char*>(CONaux), sizeof(CONSUMO), 1, NewFile);
@@ -2533,6 +2549,7 @@ void WriteFile(LPWSTR Path) {
         fwrite(reinterpret_cast<char*>(CONaux), sizeof(CONSUMO), 1, NewFile);
     }
     fclose(NewFile);
+    delete Save;
 }
 
 //Se carga el archivo de usuarios
@@ -2567,29 +2584,30 @@ void LoadInfoFile(LPWSTR Path) {
     wcstombs_s(NULL, filename, Path, 256);
 
     FILE* File;
-    fopen_s(&File, filename, "r");
+    fopen_s(&File, filename, "rb");
 
-    int num = 0;
+    CANTIDADES* Load = new CANTIDADES;
+    fread(reinterpret_cast<char*>(Load), sizeof(CANTIDADES), 1, File);
+
     USUARIO* tempUS = new USUARIO;
-    fread(&num, sizeof(int), 1, File);
-    if (num != 0) {
+    if (Load->numUs != 0) {
         USog = new USUARIO;
         USaux = USog;
-        for (int i = 0; i < num; i++) {
+        for (int i = 0; i < Load->numUs; i++) {
             //ZeroMemory(temp, sizeof(temp));
             fread(reinterpret_cast<char*>(tempUS), sizeof(USUARIO), 1, File);
             if (_tcslen(tempUS->PFPpath) != 0) {
                 _tcscpy_s(USaux->PFPpath, (sizeof(tempUS->PFPpath)) / 2, tempUS->PFPpath);
             }
             wcscpy_s(USaux->user, (sizeof(tempUS->user)) / 2, tempUS->user);
-            wcscpy_s(USaux->password, (sizeof(tempUS->password) + 1) / 2, tempUS->password);
+            wcscpy_s(USaux->password, (sizeof(tempUS->password)) / 2, tempUS->password);
             wcscpy_s(USaux->nombre, (sizeof(tempUS->nombre)) / 2, tempUS->nombre);
             wcscpy_s(USaux->alias, (sizeof(tempUS->alias)) / 2, tempUS->alias);
             wcscpy_s(USaux->comercio, (sizeof(tempUS->comercio)) / 2, tempUS->comercio);
             USaux->isAdmin = tempUS->isAdmin;
             USaux->isOwner = tempUS->isOwner;
             USaux->PrimVez = tempUS->PrimVez;
-            if (i + 1 == num) {
+            if (i + 1 == Load->numUs) {
                 USaux->sig = nullptr;
             }
             else {
@@ -2600,13 +2618,11 @@ void LoadInfoFile(LPWSTR Path) {
     }
     delete tempUS;
 
-    num = 0;
     CLIENTE* tempCLI = new CLIENTE;
-    fread(&num, sizeof(int), 1, File);
-    if (num != 0) {
+    if (Load->numCli != 0) {
         CLIog = new CLIENTE;
         CLIaux = CLIog;
-        for (int i = 0; i < num; i++) {
+        for (int i = 0; i < Load->numCli; i++) {
             ZeroMemory(tempCLI, sizeof(tempCLI));
             fread(reinterpret_cast<char*>(tempCLI), sizeof(CLIENTE), 1, File);
             wcscpy_s(CLIaux->nombre, (sizeof(tempCLI->nombre)) / 2, tempCLI->nombre);
@@ -2618,7 +2634,7 @@ void LoadInfoFile(LPWSTR Path) {
             CLIaux->mes = tempCLI->mes;
             CLIaux->año = tempCLI->año;
 
-            if (i + 1 == num) {
+            if (i + 1 == Load->numCli) {
                 CLIaux->sig = nullptr;
             }
             else {
@@ -2629,13 +2645,11 @@ void LoadInfoFile(LPWSTR Path) {
     }
     delete tempCLI;
 
-    num = 0;
     PROMOCION* tempPRO = new PROMOCION;
-    fread(&num, sizeof(int), 1, File);
-    if (num != 0) {
+    if (Load->numPro != 0) {
         PROog = new PROMOCION;
         PROaux = PROog;
-        for (int i = 0; i < num; i++) {
+        for (int i = 0; i < Load->numPro; i++) {
             
             fread(reinterpret_cast<char*>(tempPRO), sizeof(PROMOCION), 1, File);
             wcscpy_s(PROaux->nombre, (sizeof(tempPRO->nombre)) / 2, tempPRO->nombre);
@@ -2646,7 +2660,7 @@ void LoadInfoFile(LPWSTR Path) {
             PROaux->dia = tempPRO->dia;
             PROaux->mes = tempPRO->mes;
             PROaux->año = tempPRO->año;
-            if (i + 1 == num) {
+            if (i + 1 == Load->numPro) {
                 PROaux->sig = nullptr;
             }
             else {
@@ -2657,13 +2671,11 @@ void LoadInfoFile(LPWSTR Path) {
     }
     delete tempPRO;
     
-    num = 0;
     CONSUMO* tempCON = new CONSUMO;
-    fread(&num, sizeof(int), 1, File);
-    if (num != 0) {
+    if (Load->numCon != 0) {
         CONog = new CONSUMO;
         CONaux = CONog;
-        for (int i = 0; i < num; i++) {
+        for (int i = 0; i < Load->numCon; i++) {
             //ZeroMemory(temp, sizeof(temp));
             fread(reinterpret_cast<char*>(tempCON), sizeof(CONSUMO), 1, File);
             wcscpy_s(CONaux->cliente, (sizeof(tempCON->cliente)) / 2, tempCON->cliente);
@@ -2675,7 +2687,7 @@ void LoadInfoFile(LPWSTR Path) {
             CONaux->dia = tempCON->dia;
             CONaux->mes = tempCON->mes;
             CONaux->año = tempCON->año;
-            if (i + 1 == num) {
+            if (i + 1 == Load->numCon) {
                 CONaux->sig = nullptr;
             }
             else {
@@ -2685,7 +2697,68 @@ void LoadInfoFile(LPWSTR Path) {
         }
     }
     delete tempCON;
+
     fclose(File);
+    delete Load;
+}
+
+//Se borran todos los consumos relacionados del cliente borrado, CDC (Consumos de cliente)
+void DeleteCDC(CLIENTE* info) {
+    CONaux = nullptr;
+    CONSUMO* maintemp = CONog;
+    while (maintemp->sig != nullptr) {
+        if (wcscmp(info->comercio, maintemp->comercio) == 0 && wcscmp(info->nombre, maintemp->cliente) == 0) {
+            CONSUMO* temp1 = maintemp, * temp2 = CONog;
+            if (temp1 == temp2) {
+                CONog = CONog->sig;
+            }
+            else {
+                while (temp2->sig != nullptr) {
+                    if (temp2->sig == temp1) {
+                        break;
+                    }
+                    else {
+                        temp2 = temp2->sig;
+                    }
+                }
+                temp2->sig = temp1->sig;
+            }
+            maintemp = CONog;
+            temp2 = nullptr;
+            NumConsumosMonto = NumConsumosMonto - temp1->total;
+            NumConsumos--;
+            delete temp1;
+            delete temp2;
+            if (CONog->sig == nullptr) {
+                break;
+            }
+        }
+        maintemp = maintemp->sig;
+    }
+    if (wcscmp(info->comercio, maintemp->comercio) == 0 && wcscmp(info->nombre, maintemp->cliente) == 0) {
+        CONSUMO* temp1 = maintemp, * temp2 = CONog;
+        if (temp1 == temp2) {
+            CONog = CONog->sig;
+        }
+        else {
+            while (temp2->sig != nullptr) {
+                if (temp2->sig == temp1) {
+                    break;
+                }
+                else {
+                    temp2 = temp2->sig;
+                }
+            }
+            temp2->sig = temp1->sig;
+        }
+        temp2 = nullptr;
+        NumConsumosMonto = NumConsumosMonto - temp1->total;
+        NumConsumos--;
+        delete temp1;
+        delete temp2;
+    }
+    maintemp = nullptr;
+    delete maintemp;
 }
 
 //Antes de cargar un archivo, se borra todo lo previamente introducido (si es que hay)
